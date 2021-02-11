@@ -1,7 +1,7 @@
 ﻿using dotnetpostgres.Dto;
 using System;
 using System.Collections.Generic;
-using dotnetpostgres.Common.Response;
+using dotnetpostgres.Response;
 
 namespace dotnetpostgres.Services
 {
@@ -18,13 +18,13 @@ namespace dotnetpostgres.Services
         /// creates new entity from given dto
         /// </summary>
         /// <param name="dto"></param>
-        Response Add(TDto dto);
+        Response.Response Add(TDto dto);
 
         /// <summary>
         /// creates new entities as bulk insert from given dto list
         /// </summary>
         /// <param name="dtoList"></param>
-        Response AddRange(TDto[] dtoList);
+        Response.Response AddRange(TDto[] dtoList);
 
         /// <summary>
         /// updates given entity and returns affected row count.
@@ -37,13 +37,13 @@ namespace dotnetpostgres.Services
         /// hard deletes entity by given id
         /// </summary>
         /// <param name="id"></param>
-        Response Delete(object id);
+        Response.Response Delete(object id);
 
         /// <summary>
         /// soft deletes entity
         /// </summary>
         /// <param name="id"></param>
-        Response SoftDelete(object id);
+        Response.Response SoftDelete(object id);
 
         /// <summary>
         /// returns dto object by given id

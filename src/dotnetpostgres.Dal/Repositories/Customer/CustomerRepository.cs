@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Dal.Repositories;
-using dotnetpostgres.Common;
-using dotnetpostgres.Common.Request;
-using dotnetpostgres.Common.Request.Criteria.Customer;
-using dotnetpostgres.Common.Response;
+using dotnetpostgres.Request;
+using dotnetpostgres.Request.Criteria.Customer;
+using dotnetpostgres.Response;
 using Microsoft.EntityFrameworkCore;
 
 namespace dotnetpostgres.Dal.Repositories.Customer

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace dotnetpostgres.Common.Response
+﻿namespace dotnetpostgres.Response
 {
     /// <summary>
     /// response class between internet and betblogger.WebApi

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using dotnetpostgres.Common.Request;
-using dotnetpostgres.Common.Request.Criteria.Customer;
-using dotnetpostgres.Common.Response;
+using dotnetpostgres.Request;
+using dotnetpostgres.Request.Criteria.Customer;
+using dotnetpostgres.Response;
 
 namespace dotnetpostgres.Dal.Repositories.Customer
 {

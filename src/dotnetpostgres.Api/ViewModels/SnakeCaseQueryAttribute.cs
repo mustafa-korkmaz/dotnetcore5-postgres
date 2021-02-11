@@ -1,5 +1,4 @@
-﻿using dotnetpostgres.Common;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace dotnetpostgres.Api.ViewModels
 {

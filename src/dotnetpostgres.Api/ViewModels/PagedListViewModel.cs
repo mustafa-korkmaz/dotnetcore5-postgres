@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using dotnetpostgres.Common;
 
 namespace dotnetpostgres.Api.ViewModels
 {
@@ -43,17 +42,17 @@ namespace dotnetpostgres.Api.ViewModels
         {
             if (string.IsNullOrEmpty(SortType))
             {
-                return Common.SortType.None;
+                return dotnetpostgres.SortType.None;
             }
 
             switch (SortType.ToLower())
             {
                 case "asc":
-                    return Common.SortType.Ascending;
+                    return dotnetpostgres.SortType.Ascending;
                 case "desc":
-                    return Common.SortType.Descending;
+                    return dotnetpostgres.SortType.Descending;
                 default:
-                    return Common.SortType.None;
+                    return dotnetpostgres.SortType.None;
             }
 
         }

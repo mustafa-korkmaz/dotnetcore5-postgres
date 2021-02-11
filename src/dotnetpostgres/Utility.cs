@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 
-namespace dotnetpostgres.Common
+namespace dotnetpostgres
 {
     /// <summary>
     /// provides common purpose usage methods

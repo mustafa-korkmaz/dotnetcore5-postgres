@@ -9,9 +9,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\dotnetpostgres.Common\dotnetpostgres.Common.csproj" />
     <ProjectReference Include="..\dotnetpostgres.Dal\dotnetpostgres.Dal.csproj" />
     <ProjectReference Include="..\dotnetpostgres.Dto\dotnetpostgres.Dto.csproj" />
+    <ProjectReference Include="..\dotnetpostgres\dotnetpostgres.csproj" />
   </ItemGroup>
 
 </Project>

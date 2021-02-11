@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\dotnetpostgres.Common\dotnetpostgres.Common.csproj" />
+    <ProjectReference Include="..\dotnetpostgres\dotnetpostgres.csproj" />
   </ItemGroup>
 
 </Project>

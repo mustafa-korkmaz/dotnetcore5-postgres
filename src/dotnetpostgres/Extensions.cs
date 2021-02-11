@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace dotnetpostgres.Common
+namespace dotnetpostgres
 {
     public static class Extensions
     {

@@ -1,9 +1,10 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using System;
+﻿using System;
 using System.Security.Cryptography;
 using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using Utility = dotnetpostgres.Utility;
 
-namespace dotnetpostgres.Common
+namespace dotnetpostgres
 {
     public static class AppConstant
     {

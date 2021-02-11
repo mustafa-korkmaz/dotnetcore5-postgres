@@ -1,5 +1,5 @@
 ﻿
-namespace dotnetpostgres.Common
+namespace dotnetpostgres
 {
     /// <summary>
     /// appsettings.json file or env vars model class

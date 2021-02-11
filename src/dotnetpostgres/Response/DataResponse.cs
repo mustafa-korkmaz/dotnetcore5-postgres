@@ -1,5 +1,5 @@
 ﻿
-namespace dotnetpostgres.Common.Response
+namespace dotnetpostgres.Response
 {
     /// <summary>
     /// response class for data returned method

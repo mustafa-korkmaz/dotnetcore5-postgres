@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace dotnetpostgres.Common.Response
+namespace dotnetpostgres.Response
 {
     /// <summary>
     /// paged list which returned by api methods

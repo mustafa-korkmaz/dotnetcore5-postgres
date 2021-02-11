@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using AutoMapper;
-using dotnetpostgres.Common;
-using dotnetpostgres.Common.Response;
 using dotnetpostgres.Dal;
 using dotnetpostgres.Dal.Entities;
 using dotnetpostgres.Dal.Repositories;
 using dotnetpostgres.Dto;
+using dotnetpostgres.Response;
 using Microsoft.Extensions.Logging;
 
 namespace dotnetpostgres.Services
@@ -47,7 +46,7 @@ namespace dotnetpostgres.Services
             Mapper = mapper;
         }
 
-        public virtual Response Add(TDto dto)
+        public virtual Response.Response Add(TDto dto)
         {
             var entity = Mapper.Map<TDto, TEntity>(dto);
 
@@ -57,13 +56,13 @@ namespace dotnetpostgres.Services
 
             dto.Id = entity.Id;
 
-            return new Response
+            return new Response.Response
             {
                 Type = ResponseType.Success
             };
         }
 
-        public virtual Response AddRange(TDto[] dtoList)
+        public virtual Response.Response AddRange(TDto[] dtoList)
         {
             var entities = Mapper.Map<TDto[], TEntity[]>(dtoList);
 
@@ -76,7 +75,7 @@ namespace dotnetpostgres.Services
                 dtoList[i].Id = entities[i].Id;
             }
 
-            return new Response
+            return new Response.Response
             {
                 Type = ResponseType.Success
             };
@@ -136,9 +135,9 @@ namespace dotnetpostgres.Services
             return businessResp;
         }
 
-        public virtual Response Delete(object id)
+        public virtual Response.Response Delete(object id)
         {
-            var resp = new Response
+            var resp = new Response.Response
             {
                 Type = ResponseType.Fail
             };
@@ -175,9 +174,9 @@ namespace dotnetpostgres.Services
             return resp;
         }
 
-        public virtual Response SoftDelete(object id)
+        public virtual Response.Response SoftDelete(object id)
         {
-            var resp = new Response
+            var resp = new Response.Response
             {
                 Type = ResponseType.Fail
             };
@@ -227,7 +226,7 @@ namespace dotnetpostgres.Services
             //log db record modification as an info
             Logger.LogInformation($"'{type}' entity with ID: {id} has been modified.");
 
-            return new Response
+            return new Response.Response
             {
                 Type = ResponseType.Success
             };

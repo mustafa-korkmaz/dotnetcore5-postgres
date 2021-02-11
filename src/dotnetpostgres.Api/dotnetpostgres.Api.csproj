@@ -14,11 +14,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\dotnetpostgres.Common\dotnetpostgres.Common.csproj" />
+    <Folder Include="ViewModels\Customer\Response\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModels\Customer\Response\" />
+    <ProjectReference Include="..\dotnetpostgres\dotnetpostgres.csproj" />
   </ItemGroup>
 
 </Project>

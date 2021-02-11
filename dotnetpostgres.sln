@@ -15,11 +15,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{B7566193-3
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotnetpostgres.Services", "src\dotnetpostgres.Services\dotnetpostgres.Services.csproj", "{E14B7D44-AD04-4C04-A27B-9D9468A10040}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotnetpostgres.Common", "src\dotnetpostgres.Common\dotnetpostgres.Common.csproj", "{6D24EF52-4BB2-4928-8D32-00A1C4ADF211}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotnetpostgres", "src\dotnetpostgres\dotnetpostgres.csproj", "{6D24EF52-4BB2-4928-8D32-00A1C4ADF211}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotnetpostgres.Dto", "src\dotnetpostgres.Dto\dotnetpostgres.Dto.csproj", "{8DE4A829-D527-411E-A74F-C425720755F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotnetpostgres.Dto", "src\dotnetpostgres.Dto\dotnetpostgres.Dto.csproj", "{8DE4A829-D527-411E-A74F-C425720755F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotnetpostgres.Dal", "src\dotnetpostgres.Dal\dotnetpostgres.Dal.csproj", "{3508EDD5-91A1-44FB-A7B8-DDEB6FD1DAA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotnetpostgres.Dal", "src\dotnetpostgres.Dal\dotnetpostgres.Dal.csproj", "{3508EDD5-91A1-44FB-A7B8-DDEB6FD1DAA4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
