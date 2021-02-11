@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using dotnetpostgres.Dal.Databases.Postgres;
 using dotnetpostgres.Request;
 using dotnetpostgres.Request.Criteria.Customer;
@@ -20,7 +18,7 @@ namespace dotnetpostgres.Dal.Repositories.Customer
         {
             var result = new PagedListResponse<Entities.Customer>();
 
-            var query = Entities.Where(p => p.UserId == request.FilterCriteria.UserId);
+            var query = Entities.AsQueryable();
 
             if (!string.IsNullOrEmpty(request.FilterCriteria.Title))
             {
@@ -61,13 +59,6 @@ namespace dotnetpostgres.Dal.Repositories.Customer
                 .ToList();
 
             return result;
-        }
-
-        public IEnumerable<Entities.Customer> GetAll(Guid userId)
-        {
-            var query = Entities.Where(p => p.UserId == userId);
-
-            return query.ToList();
         }
     }
 }

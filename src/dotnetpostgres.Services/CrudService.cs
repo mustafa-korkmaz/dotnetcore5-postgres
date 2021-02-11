@@ -18,7 +18,7 @@ namespace dotnetpostgres.Services
     /// <typeparam name="TEntity">TEntity is db entity.</typeparam>
     /// <typeparam name="TDto">TDto is data transfer object.</typeparam>
     /// <typeparam name="TRepository"></typeparam>
-    public abstract class CrudBusiness<TRepository, TEntity, TDto> : ICrudService<TDto>
+    public abstract class CrudService<TRepository, TEntity, TDto> : ICrudService<TDto>
         where TEntity : EntityBase
         where TDto : DtoBase
         where TRepository : IRepository<TEntity>
@@ -38,7 +38,7 @@ namespace dotnetpostgres.Services
         /// </summary>
         protected bool ValidateEntityOwner;
 
-        protected CrudBusiness(IUnitOfWork uow, ILogger logger, IMapper mapper)
+        protected CrudService(IUnitOfWork uow, ILogger logger, IMapper mapper)
         {
             Uow = uow;
             Repository = Uow.Repository<TRepository, TEntity>();

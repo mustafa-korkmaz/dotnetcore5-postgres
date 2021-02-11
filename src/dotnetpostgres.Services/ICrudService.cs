@@ -5,7 +5,7 @@ using dotnetpostgres.Response;
 
 namespace dotnetpostgres.Services
 {
-    interface ICrudService<TDto>
+    public interface ICrudService<TDto>
         where TDto : DtoBase
     {
         /// <summary>

@@ -225,7 +225,6 @@ namespace dotnetpostgres.Dal.Databases.Postgres
                     Id = id,
                     CreatedAt = new DateTime(2020, 4, 30),
                     Title = title,
-                    UserId = userId
                 };
             }
 

@@ -7,10 +7,6 @@ namespace dotnetpostgres.Dal.Entities
     public class Customer : EntityBase
     {
         [Required]
-        public Guid UserId { get; set; }
-        public virtual Identity.ApplicationUser User { get; set; } // navigation 
-
-        [Required]
         [MaxLength(100)]
         public string Title { get; set; }
 
