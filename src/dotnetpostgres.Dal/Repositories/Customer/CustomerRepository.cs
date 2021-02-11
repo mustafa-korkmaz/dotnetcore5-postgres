@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Dal.Repositories;
+using dotnetpostgres.Dal.Databases.Postgres;
 using dotnetpostgres.Request;
 using dotnetpostgres.Request.Criteria.Customer;
 using dotnetpostgres.Response;
@@ -11,7 +11,7 @@ namespace dotnetpostgres.Dal.Repositories.Customer
 {
     public class CustomerRepository : PostgreSqlDbRepository<Entities.Customer, int>, ICustomerRepository
     {
-        public CustomerRepository(Postgres.PostgresDbContext context) : base(context)
+        public CustomerRepository(PostgresDbContext context) : base(context)
         {
 
         }

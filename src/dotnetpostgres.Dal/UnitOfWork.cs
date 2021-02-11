@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using dotnetpostgres.Dal.Postgres;
+using dotnetpostgres.Dal.Databases.Postgres;
 using dotnetpostgres.Dal.Repositories;
 using Microsoft.EntityFrameworkCore.Storage;
 

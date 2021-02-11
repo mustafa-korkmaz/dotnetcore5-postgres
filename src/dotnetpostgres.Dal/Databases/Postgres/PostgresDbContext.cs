@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 using dotnetpostgres.Dal.Entities.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-namespace dotnetpostgres.Dal.Postgres
+namespace dotnetpostgres.Dal.Databases.Postgres
 {
     public class PostgresDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid, ApplicationUserClaim<Guid>,
               ApplicationUserRole<Guid>, ApplicationUserLogin<Guid>, ApplicationRoleClaim<Guid>, ApplicationUserToken<Guid>>

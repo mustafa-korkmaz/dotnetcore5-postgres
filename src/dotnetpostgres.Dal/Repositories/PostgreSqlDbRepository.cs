@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using dotnetpostgres.Dal.Databases.Postgres;
 using dotnetpostgres.Dal.Entities;
-using dotnetpostgres.Dal.Postgres;
-using dotnetpostgres.Dal.Repositories;
 using Microsoft.EntityFrameworkCore;
 
-namespace Dal.Repositories
+namespace dotnetpostgres.Dal.Repositories
 {
     public abstract class PostgreSqlDbRepository<TEntity, TKey> : IRepository<TEntity> where TEntity : class, IEntity<TKey>
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
-namespace dotnetpostgres.Dal.Postgres
+namespace dotnetpostgres.Dal.Databases.Postgres
 {
     /// <summary>
     /// for ef migrations and updates
