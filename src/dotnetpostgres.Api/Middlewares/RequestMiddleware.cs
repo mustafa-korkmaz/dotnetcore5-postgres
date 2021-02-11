@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -33,6 +34,8 @@ namespace dotnetpostgres.Api.Middlewares
             string requestContent = string.Empty;
             var ip = string.Empty;
 
+            context.Request.EnableBuffering();
+
             Stream originalBody = context.Response.Body;
 
             try
@@ -48,11 +51,16 @@ namespace dotnetpostgres.Api.Middlewares
 
                     ip = address?.ToString();
 
-                    var request = context.Request;
+                    using var reader = new StreamReader(
+                        context.Request.Body,
+                        Encoding.UTF8,
+                        false,
+                        leaveOpen: true);
+                    requestContent = await reader.ReadToEndAsync();
+                    // Do some processing with body…
 
-                    requestContent = await new StreamReader(request.Body).ReadToEndAsync();
-
-                    request.Body.Seek(0, SeekOrigin.Begin);
+                    // Reset the request body stream position so the next middleware can read it
+                    context.Request.Body.Position = 0;
                 }
 
                 await _next(context);

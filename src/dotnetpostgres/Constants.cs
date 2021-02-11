@@ -25,6 +25,8 @@ namespace dotnetpostgres
         public const string UserNotActive = "USER_NOT_ACTIVE";
         public const string IncorrectUsernameOrPassword = "USERNAME_OR_PASSWORD_INCORRECT";
         public const string UserExists = "USER_ALREADY_EXISTS";
+        public const string SecurityCodeExpired = "SECURITY_CODE_EXPIRED";
+        public const string SecurityError = "SECURITY_ERROR";
     }
 
     public static class ValidationErrorCode
@@ -73,6 +75,28 @@ namespace dotnetpostgres
         public const string Android = "1";
         public const string WebApp = "2";
         public const string AdminPanel = "3";
+    }
+
+    public static class DatabaseKeys
+    {
+        public static class ApplicationRoleId
+        {
+            public static Guid Owner = Guid.Parse("7f9fcc26-c38c-46bd-86a7-b7b3d5959b78");
+
+            public static Guid Admin = Guid.Parse("e964fe31-ba9a-4ee6-98c1-7fa84767868d");
+
+            public static Guid User = Guid.Parse("0967d456-60a8-43de-9ac8-5f15dfaa1909");
+
+            public static Guid DemoUser = Guid.Parse("8a158f67-b9aa-4dec-9e8f-53d29aeb1905");
+        }
+
+        public static class ApplicationRoleName
+        {
+            public const string Owner = "owner";
+            public const string Admin = "admin";
+            public const string User = "user";
+            public const string DemoUser = "demo_user";
+        }
     }
 
     #region cahce keys
