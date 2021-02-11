@@ -38,7 +38,7 @@ namespace dotnetpostgres.Api.Middlewares
             try
             {
                 //get we really need to log request content or not from appSettings
-                var setting = _configuration["Logging:LogRequestContent"];
+                var setting = _configuration["LogRequestContent"];
 
                 logRequestContent = setting != null && setting.ToLower() == "true";
 

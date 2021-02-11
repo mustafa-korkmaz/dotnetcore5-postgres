@@ -11,7 +11,7 @@ namespace dotnetpostgres.Dal.Databases.Postgres
         public PostgresDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<PostgresDbContext>();
-            optionsBuilder.UseNpgsql("Server=rogue.db.elephantsql.com;Port=5432;Database=mbxnorrc;User Id = mbxnorrc; Password=S4mD1oZZD-Re65jLb3oxYhI_qTWJ9L1F;CommandTimeout=20;");
+            optionsBuilder.UseNpgsql("Server=ziggy.db.elephantsql.com;Port=5432;Database=jvzpootr;User Id = jvzpootr; Password=KPfyR-B_tRNUsly8wgzxWXdogjcLBAJj;CommandTimeout=20;");
 
             return new PostgresDbContext(optionsBuilder.Options);
         }
