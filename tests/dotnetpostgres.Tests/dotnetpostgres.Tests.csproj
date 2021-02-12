@@ -26,9 +26,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\dotnetpostgres.Api\dotnetpostgres.Api.csproj" />
-    <ProjectReference Include="..\src\dotnetpostgres.Dal\dotnetpostgres.Dal.csproj" />
-    <ProjectReference Include="..\src\dotnetpostgres.Services\dotnetpostgres.Services.csproj" />
+    <ProjectReference Include="..\..\src\dotnetpostgres.Api\dotnetpostgres.Api.csproj" />
+    <ProjectReference Include="..\..\src\dotnetpostgres.Dal\dotnetpostgres.Dal.csproj" />
+    <ProjectReference Include="..\..\src\dotnetpostgres.Services\dotnetpostgres.Services.csproj" />
   </ItemGroup>
 
 </Project>

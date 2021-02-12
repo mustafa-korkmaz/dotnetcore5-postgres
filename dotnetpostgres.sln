@@ -11,8 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{4F7E8B81
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deployment", "deployment", "{E4DA8766-F3EC-4DB1-89DF-32B296A2ACA8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{B7566193-3C06-4EED-A70B-CD6D963A9710}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotnetpostgres.Services", "src\dotnetpostgres.Services\dotnetpostgres.Services.csproj", "{E14B7D44-AD04-4C04-A27B-9D9468A10040}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotnetpostgres", "src\dotnetpostgres\dotnetpostgres.csproj", "{6D24EF52-4BB2-4928-8D32-00A1C4ADF211}"
@@ -21,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotnetpostgres.Dto", "src\d
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotnetpostgres.Dal", "src\dotnetpostgres.Dal\dotnetpostgres.Dal.csproj", "{3508EDD5-91A1-44FB-A7B8-DDEB6FD1DAA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotnetpostgres.tests", "dotnetpostgres.tests\dotnetpostgres.tests.csproj", "{4DDEA760-4BE9-4E6B-86B6-9187E31EBECE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotnetpostgres.Tests", "tests\dotnetpostgres.Tests\dotnetpostgres.Tests.csproj", "{4DDEA760-4BE9-4E6B-86B6-9187E31EBECE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{D4C25A7E-C115-41C0-AADA-DE815BF75EEC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,7 +63,7 @@ Global
 		{6D24EF52-4BB2-4928-8D32-00A1C4ADF211} = {4AF8E641-7C8E-4623-BD0E-E960DAF0E4C9}
 		{8DE4A829-D527-411E-A74F-C425720755F4} = {4AF8E641-7C8E-4623-BD0E-E960DAF0E4C9}
 		{3508EDD5-91A1-44FB-A7B8-DDEB6FD1DAA4} = {4AF8E641-7C8E-4623-BD0E-E960DAF0E4C9}
-		{4DDEA760-4BE9-4E6B-86B6-9187E31EBECE} = {B7566193-3C06-4EED-A70B-CD6D963A9710}
+		{4DDEA760-4BE9-4E6B-86B6-9187E31EBECE} = {D4C25A7E-C115-41C0-AADA-DE815BF75EEC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5690D498-8634-44DE-AAE6-20D5A80796AC}
