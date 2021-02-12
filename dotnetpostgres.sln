@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotnetpostgres.Dto", "src\d
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotnetpostgres.Dal", "src\dotnetpostgres.Dal\dotnetpostgres.Dal.csproj", "{3508EDD5-91A1-44FB-A7B8-DDEB6FD1DAA4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotnetpostgres.tests", "dotnetpostgres.tests\dotnetpostgres.tests.csproj", "{4DDEA760-4BE9-4E6B-86B6-9187E31EBECE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{3508EDD5-91A1-44FB-A7B8-DDEB6FD1DAA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3508EDD5-91A1-44FB-A7B8-DDEB6FD1DAA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3508EDD5-91A1-44FB-A7B8-DDEB6FD1DAA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DDEA760-4BE9-4E6B-86B6-9187E31EBECE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DDEA760-4BE9-4E6B-86B6-9187E31EBECE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DDEA760-4BE9-4E6B-86B6-9187E31EBECE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DDEA760-4BE9-4E6B-86B6-9187E31EBECE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,6 +63,7 @@ Global
 		{6D24EF52-4BB2-4928-8D32-00A1C4ADF211} = {4AF8E641-7C8E-4623-BD0E-E960DAF0E4C9}
 		{8DE4A829-D527-411E-A74F-C425720755F4} = {4AF8E641-7C8E-4623-BD0E-E960DAF0E4C9}
 		{3508EDD5-91A1-44FB-A7B8-DDEB6FD1DAA4} = {4AF8E641-7C8E-4623-BD0E-E960DAF0E4C9}
+		{4DDEA760-4BE9-4E6B-86B6-9187E31EBECE} = {B7566193-3C06-4EED-A70B-CD6D963A9710}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5690D498-8634-44DE-AAE6-20D5A80796AC}
