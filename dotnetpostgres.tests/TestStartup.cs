@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using dotnetpostgres.Api;
 using dotnetpostgres.Services;
 using dotnetpostgres.Services.Account;
 using dotnetpostgres.Services.Caching;
@@ -15,16 +14,16 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace dotnetpostgres.tests
 {
-    public class TestStartup : Startup
+    public class TestStartup
     {
         public static readonly InMemoryDatabaseRoot InMemoryDatabaseRoot = new InMemoryDatabaseRoot();
 
-        public TestStartup(IConfigurationRoot config) : base(config)
+        public TestStartup()
         {
           
         }
 
-        public void ConfigureTestServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
             var configuration = GetApplicationConfiguration();
 

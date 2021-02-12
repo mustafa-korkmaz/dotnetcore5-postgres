@@ -236,7 +236,7 @@ namespace dotnetpostgres.Services
         {
             var businessResp = new DataResponse<TDto>
             {
-                Type = ResponseType.Fail
+                Type = ResponseType.RecordNotFound
             };
 
             var entity = Repository.GetById(id);

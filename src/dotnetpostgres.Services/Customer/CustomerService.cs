@@ -5,6 +5,7 @@ using dotnetpostgres.Dal.Repositories.Customer;
 using dotnetpostgres.Request;
 using dotnetpostgres.Request.Criteria.Customer;
 using dotnetpostgres.Response;
+using dotnetpostgres.Services.Caching;
 using Microsoft.Extensions.Logging;
 
 namespace dotnetpostgres.Services.Customer
@@ -28,6 +29,12 @@ namespace dotnetpostgres.Services.Customer
                 Items = customers,
                 RecordsTotal = resp.RecordsTotal
             };
+        }
+
+        [CacheableResult(CacheKey = "MyAwesomeCacheKey")]
+        public int? CacheTest(int newResult)
+        {
+            return newResult;
         }
     }
 }

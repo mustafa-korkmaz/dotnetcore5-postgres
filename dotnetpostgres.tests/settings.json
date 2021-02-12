@@ -12,6 +12,6 @@
   },
   "AllowedHosts": "*",
   "Keys": {
-    "CacheProvider": "LocalMemoryCacheService"
+    "CacheProvider": "InMemoryCacheService"
   }
 }
