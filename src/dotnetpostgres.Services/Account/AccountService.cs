@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using dotnetpostgres.Dto;
 using dotnetpostgres.Response;
+using dotnetpostgres.Services.Email;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
@@ -20,15 +21,15 @@ namespace dotnetpostgres.Services.Account
         private readonly UserManager<Dal.Entities.Identity.ApplicationUser> _userManager;
         private readonly ILogger<AccountService> _logger;
         private readonly IMapper _mapper;
-        //private readonly IEmailService _emailService;
+        private readonly IEmailService _emailService;
         //private readonly ISlackService _slackService;
 
-        public AccountService(UserManager<Dal.Entities.Identity.ApplicationUser> userManager, ILogger<AccountService> logger, IMapper mapper/*, IEmailService emailService, ISlackService slackService*/)
+        public AccountService(UserManager<Dal.Entities.Identity.ApplicationUser> userManager, ILogger<AccountService> logger, IMapper mapper, IEmailService emailService /*ISlackService slackService*/)
         {
             _userManager = userManager;
             _logger = logger;
             _mapper = mapper;
-            //_emailService = emailService;
+            _emailService = emailService;
             //_slackService = slackService;
         }
 
@@ -106,7 +107,7 @@ namespace dotnetpostgres.Services.Account
             }
 
             //start sending slack notification
-          //  var slackMessageTask = _slackService.SendMessage($"{userDto.Email} joined :tada:", "account-tracker");
+            //  var slackMessageTask = _slackService.SendMessage($"{userDto.Email} joined :tada:", "account-tracker");
 
             var userModel = new Dal.Entities.Identity.ApplicationUser
             {
@@ -117,7 +118,7 @@ namespace dotnetpostgres.Services.Account
                 NameSurname = userDto.NameSurname,
                 PasswordHash = HashPassword(password),
                 SecurityStamp = Guid.NewGuid().ToString(),
-               // Settings = userDto.Settings,
+                // Settings = userDto.Settings,
                 CreatedAt = userDto.CreatedAt,
             };
 
@@ -190,7 +191,7 @@ namespace dotnetpostgres.Services.Account
 
             try
             {
-                decodedLink =Utility.Base64Decode(securityCode);
+                decodedLink = Utility.Base64Decode(securityCode);
             }
             catch (Exception e)
             {
@@ -365,22 +366,21 @@ namespace dotnetpostgres.Services.Account
 
         private bool SendResetPasswordEmail(string resetLink, string emailAddress)
         {
-            //var email = new Email
-            //{
-            //    To = emailAddress,
-            //    Subject = "Şifre sıfırlama isteği",
-            //    Template = new Template
-            //    {
-            //        Name = "reset-password-link.html",
-            //        Variables = new Dictionary<string, string>
-            //        {
-            //            {"reset_link", resetLink}
-            //        }
-            //    }
-            //};
+            var email = new Email.Email
+            {
+                To = emailAddress,
+                Subject = "Şifre sıfırlama isteği",
+                Template = new Template
+                {
+                    Name = "reset-password-link.html",
+                    Variables = new Dictionary<string, string>
+                    {
+                        {"reset_link", resetLink}
+                    }
+                }
+            };
 
-            //return _emailService.SendEmail(email);
-            return true;
+            return _emailService.SendEmail(email);
         }
 
         #endregion private methods
