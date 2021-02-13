@@ -19,14 +19,19 @@ namespace dotnetpostgres.Services.Account
     public class AccountService : IAccountService
     {
         private readonly UserManager<Dal.Entities.Identity.ApplicationUser> _userManager;
+        private readonly RoleManager<Dal.Entities.Identity.ApplicationRole> _roleManager;
         private readonly ILogger<AccountService> _logger;
         private readonly IMapper _mapper;
         private readonly IEmailService _emailService;
         //private readonly ISlackService _slackService;
 
-        public AccountService(UserManager<Dal.Entities.Identity.ApplicationUser> userManager, ILogger<AccountService> logger, IMapper mapper, IEmailService emailService /*ISlackService slackService*/)
+        public AccountService(
+            UserManager<Dal.Entities.Identity.ApplicationUser> userManager,
+            RoleManager<Dal.Entities.Identity.ApplicationRole> roleManager,
+            ILogger<AccountService> logger, IMapper mapper, IEmailService emailService /*ISlackService slackService*/)
         {
             _userManager = userManager;
+            _roleManager = roleManager;
             _logger = logger;
             _mapper = mapper;
             _emailService = emailService;
@@ -69,14 +74,10 @@ namespace dotnetpostgres.Services.Account
             //get user roles
             var roles = await _userManager.GetRolesAsync(user);
 
-            //get user claims
-            var claims = await _userManager.GetClaimsAsync(user);
-
             userDto.Email = user.Email;
             userDto.PhoneNumber = user.PhoneNumber;
             userDto.Id = user.Id;
             userDto.Roles = roles;
-            userDto.Claims = claims.ToDictionary(p => p.Type, p => p.Value);
 
             var token = GenerateToken(userDto);
 
@@ -275,16 +276,27 @@ namespace dotnetpostgres.Services.Account
         {
             var userEntity = await _userManager.FindByIdAsync(userId);
 
-            var rolesTask = _userManager.GetRolesAsync(userEntity);
-            var claimsTask = _userManager.GetClaimsAsync(userEntity);
+            var claims = await _userManager.GetClaimsAsync(userEntity);
+            var userClaims = claims.ToList();
 
-            Task.WaitAll(rolesTask, claimsTask);
+            var userRoles = await _userManager.GetRolesAsync(userEntity);
+
+            var roles = _roleManager.Roles
+                .Where(r => userRoles.Contains(r.Name))
+                .ToList();
+
+            foreach (var role in roles)
+            {
+                var roleClaims = await _roleManager.GetClaimsAsync(role);
+
+                userClaims.AddRange(roleClaims);
+            }
 
             var userDto = _mapper.Map<Dal.Entities.Identity.ApplicationUser, ApplicationUser>(userEntity);
 
-            userDto.Roles = rolesTask.Result;
-            userDto.Claims = claimsTask.Result.ToDictionary(c => c.Type, c => c.Value);
-            
+            userDto.Roles = userRoles;
+            userDto.Claims = userClaims.ToDictionary(c => c.Type, c => c.Value);
+
             return userDto;
         }
 
@@ -321,11 +333,11 @@ namespace dotnetpostgres.Services.Account
             claims.Add(emailClaim);
             claims.Add(phoneClaim);
 
-            foreach (var userClaim in user.Claims)
-            {
-                var id = GetClaimId(userClaim.Value);
-                claims.Add(new Claim(string.Format(":{0}:", id), id));
-            }
+            //foreach (var userClaim in user.Claims)
+            //{
+            //    var id = GetClaimId(userClaim.Value);
+            //    claims.Add(new Claim(string.Format(":{0}:", id), id));
+            //}
 
             ClaimsIdentity identity = new ClaimsIdentity(new GenericIdentity(user.Email, "Token"), claims);
 

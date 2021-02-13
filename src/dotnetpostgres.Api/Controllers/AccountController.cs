@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Api.ViewModels.User.Response;
@@ -25,7 +26,7 @@ namespace dotnetpostgres.Api.Controllers
         [HttpPost("reset")]
         [ProducesResponseType(typeof(ApiResponse), (int)HttpStatusCode.OK)]
         [AllowAnonymous]
-        public async Task<IActionResult> Reset([FromBody]ResetViewModel model)
+        public async Task<IActionResult> Reset([FromBody] ResetViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -45,7 +46,7 @@ namespace dotnetpostgres.Api.Controllers
         [HttpPost("reset-password")]
         [ProducesResponseType(typeof(ApiResponse), (int)HttpStatusCode.OK)]
         [AllowAnonymous]
-        public async Task<IActionResult> ResetPassword([FromBody]ResetPasswordViewModel model)
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -65,7 +66,7 @@ namespace dotnetpostgres.Api.Controllers
 
         [HttpPost("password")]
         [ProducesResponseType(typeof(ApiResponse), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> Password([FromBody]ChangePasswordViewModel model)
+        public async Task<IActionResult> Password([FromBody] ChangePasswordViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -85,7 +86,7 @@ namespace dotnetpostgres.Api.Controllers
         [HttpPost("token")]
         [ProducesResponseType(typeof(ApiResponse<TokenViewModel>), (int)HttpStatusCode.OK)]
         [AllowAnonymous]
-        public async Task<IActionResult> Token([FromBody]GetTokenViewModel model)
+        public async Task<IActionResult> Token([FromBody] GetTokenViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -105,7 +106,7 @@ namespace dotnetpostgres.Api.Controllers
         [HttpPost("register")]
         [ProducesResponseType(typeof(ApiResponse), (int)HttpStatusCode.OK)]
         [AllowAnonymous]
-        public async Task<IActionResult> Register([FromBody]RegisterViewModel model)
+        public async Task<IActionResult> Register([FromBody] RegisterViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -139,7 +140,7 @@ namespace dotnetpostgres.Api.Controllers
         [HttpPost("settings")]
         [ProducesResponseType(typeof(ApiResponse), (int)HttpStatusCode.OK)]
         [AllowAnonymous]
-        public IActionResult Settings([FromBody]SettingsViewModel model)
+        public IActionResult Settings([FromBody] SettingsViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -200,7 +201,7 @@ namespace dotnetpostgres.Api.Controllers
         {
             var user = await _accountService.GetUser(GetUserId().Value.ToString());
 
-         //   var settings = _userBusiness.GetSettings(user.Settings);
+            //   var settings = _userBusiness.GetSettings(user.Settings);
 
             return new ApiResponse<UserViewModel>
             {
@@ -214,6 +215,11 @@ namespace dotnetpostgres.Api.Controllers
                     Username = user.UserName,
                     EmailConfirmed = user.EmailConfirmed,
                     Roles = user.Roles,
+                    Claims = user.Claims.Select(c => new Claim()
+                    {
+                        Value = c.Key,
+                        Description = c.Value
+                    })
                     //Settings = new Settings
                     //{
                     //    FixedHeader = settings.FixedHeader,
@@ -246,7 +252,7 @@ namespace dotnetpostgres.Api.Controllers
                 UserName = model.Email,
                 Roles = new List<string> { DatabaseKeys.ApplicationRoleName.User },
                 EmailConfirmed = true,
-               // Settings = _userBusiness.GetDefaultSettings(),
+                // Settings = _userBusiness.GetDefaultSettings(),
                 CreatedAt = now
             };
 

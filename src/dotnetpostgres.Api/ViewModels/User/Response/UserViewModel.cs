@@ -22,6 +22,8 @@ namespace Api.ViewModels.User.Response
         public string Title { get; set; }
 
         public Settings Settings { get; set; }
+
+        public IEnumerable<Claim> Claims { get; set; }
     }
 
     public class Settings
@@ -33,5 +35,11 @@ namespace Api.ViewModels.User.Response
         public bool FixedHeader { get; set; }
 
         public string PaginationAlign { get; set; }
+    }
+
+    public class Claim
+    {
+        public string Value { get; set; }
+        public string Description { get; set; }
     }
 }
