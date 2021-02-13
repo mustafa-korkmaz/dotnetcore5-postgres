@@ -20,24 +20,10 @@ namespace dotnetpostgres.Dto
 
         public string PhoneNumber { get; set; }
 
-        public bool ContactPermission { get; set; }
-
         public DateTime CreatedAt { get; set; }
 
         public IList<string> Roles { get; set; }
 
         public Dictionary<string, string> Claims { get; set; }
-
-        //public bool IsAdmin
-        //{
-        //    get
-        //    {
-        //        if (Roles == null)
-        //        {
-        //            return false;
-        //        }
-        //        return Roles.Any(r => r == Role.Admin);
-        //    }
-        //}
     }
 }

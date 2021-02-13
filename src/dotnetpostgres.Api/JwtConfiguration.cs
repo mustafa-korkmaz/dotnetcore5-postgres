@@ -34,7 +34,7 @@ namespace dotnetpostgres.Api
             })
             .AddJwtBearer(options =>
             {
-                options.TokenValidationParameters = new TokenValidationParameters()
+                options.TokenValidationParameters = new TokenValidationParameters
                 {
                     IssuerSigningKey = JwtTokenConstants.IssuerSigningKey,
                     ValidAudience = JwtTokenConstants.Audience,

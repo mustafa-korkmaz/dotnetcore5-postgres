@@ -175,7 +175,7 @@ namespace dotnetpostgres.Dal.Databases.Postgres
 
             ApplicationRole CreateRole(Guid id, string name, string concurrencyStamp)
             {
-                return new ApplicationRole
+                return new()
                 {
                     Id = id,
                     Name = name,
@@ -183,6 +183,39 @@ namespace dotnetpostgres.Dal.Databases.Postgres
                     ConcurrencyStamp = concurrencyStamp
                 };
             }
+
+            modelBuilder.Entity<ApplicationRoleClaim<Guid>>().HasData(
+                CreateRoleClaim(1, Guid.Parse("7f9fcc26-c38c-46bd-86a7-b7b3d5959b78"),
+                    "owner_role_claim", "Owner role claim")
+            );
+
+            ApplicationRoleClaim<Guid> CreateRoleClaim(int id, Guid roleId, string type, string value)
+            {
+                return new()
+                {
+                    Id = id,
+                    RoleId = roleId,
+                    ClaimType = type,
+                    ClaimValue = value
+                };
+            }
+
+            modelBuilder.Entity<ApplicationUserClaim<Guid>>().HasData(
+                CreateUserClaim(1, Guid.Parse("87622649-96c8-40b5-bcef-8351b0883b49"),
+                    "owner_user_claim", "Owner user claim")
+            );
+
+            ApplicationUserClaim<Guid> CreateUserClaim(int id, Guid userId, string type, string value)
+            {
+                return new()
+                {
+                    Id = id,
+                    UserId = userId,
+                    ClaimType = type,
+                    ClaimValue = value
+                };
+            }
+
 
             modelBuilder.Entity<ApplicationUser>().HasData(
 

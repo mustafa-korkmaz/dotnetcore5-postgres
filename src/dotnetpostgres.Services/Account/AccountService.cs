@@ -275,13 +275,16 @@ namespace dotnetpostgres.Services.Account
         {
             var userEntity = await _userManager.FindByIdAsync(userId);
 
+            var rolesTask = _userManager.GetRolesAsync(userEntity);
+            var claimsTask = _userManager.GetClaimsAsync(userEntity);
+
+            Task.WaitAll(rolesTask, claimsTask);
+
             var userDto = _mapper.Map<Dal.Entities.Identity.ApplicationUser, ApplicationUser>(userEntity);
 
-            //get user roles
-            var roles = await _userManager.GetRolesAsync(userEntity);
-
-            userDto.Roles = roles;
-
+            userDto.Roles = rolesTask.Result;
+            userDto.Claims = claimsTask.Result.ToDictionary(c => c.Type, c => c.Value);
+            
             return userDto;
         }
 
