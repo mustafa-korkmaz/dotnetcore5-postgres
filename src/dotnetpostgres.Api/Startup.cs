@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using dotnetpostgres.Services;
 using dotnetpostgres.Services.Customer;
 using Microsoft.AspNetCore.Builder;
@@ -12,10 +13,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using AutoMapper;
 using dotnetpostgres.Api.Middlewares;
 using dotnetpostgres.Services.Account;
 using dotnetpostgres.Services.Email;
+using dotnetpostgres.Services.User;
 using Microsoft.Extensions.Logging;
 
 namespace dotnetpostgres.Api
@@ -75,6 +76,7 @@ namespace dotnetpostgres.Api
 
             services.AddTransient<ICustomerService, CustomerService>();
             services.AddTransient<IAccountService, AccountService>();
+            services.AddTransient<IUserService, UserService>();
             services.AddTransient<IEmailService, EmailService>();
 
             services.AddAutoMapper(typeof(MappingProfile));
@@ -96,6 +98,31 @@ namespace dotnetpostgres.Api
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "dotnetpostgres.Api", Version = "v1" });
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Scheme = "Bearer"
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            },
+                            Scheme = "oauth2",
+                            Name = "Bearer",
+                            In = ParameterLocation.Header,
+
+                        },
+                        new List<string>()
+                    }
+                });
             });
         }
 

@@ -29,14 +29,21 @@ namespace dotnetpostgres.Api.Controllers
 
         /// <summary>
         /// returns user id from user principal claims.
-        /// If not exists returns null
+        /// If not exists throws error
         /// </summary>
         /// <returns></returns>
-        protected Guid? GetUserId()
+        protected Guid GetUserId()
         {
             var userIdClaim = User.Claims.FirstOrDefault(p => p.Type == "id");
 
-            return userIdClaim?.Value.ToGuid();
+            var userId = userIdClaim?.Value.ToGuid();
+
+            if (userId == null)
+            {
+                throw new NullReferenceException("UserId cannot be null");
+            }
+
+            return userId.Value;
         }
 
         /// <summary>

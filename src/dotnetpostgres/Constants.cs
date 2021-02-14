@@ -2,7 +2,6 @@
 using System.Security.Cryptography;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
-using Utility = dotnetpostgres.Utility;
 
 namespace dotnetpostgres
 {
@@ -27,6 +26,7 @@ namespace dotnetpostgres
         public const string UserExists = "USER_ALREADY_EXISTS";
         public const string SecurityCodeExpired = "SECURITY_CODE_EXPIRED";
         public const string SecurityError = "SECURITY_ERROR";
+        public const string ObjectExceededMaxAllowedLength = "OBJECT_EXCEEDED_MAX_ALLOWED_LENGTH";
     }
 
     public static class ValidationErrorCode

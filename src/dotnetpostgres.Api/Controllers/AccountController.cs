@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 using Api.ViewModels.User.Response;
 using dotnetpostgres.Api.ViewModels.User.Request;
 using dotnetpostgres.Dto;
+using dotnetpostgres.Dto.User;
 using dotnetpostgres.Response;
 using dotnetpostgres.Services.Account;
+using dotnetpostgres.Services.User;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,10 +19,13 @@ namespace dotnetpostgres.Api.Controllers
     public class AccountController : ApiControllerBase
     {
         private readonly IAccountService _accountService;
+        private readonly IUserService _userService;
 
-        public AccountController(IAccountService accountService)
+
+        public AccountController(IAccountService accountService, IUserService userService)
         {
             _accountService = accountService;
+            _userService = userService;
         }
 
         [HttpPost("reset")]
@@ -139,7 +144,6 @@ namespace dotnetpostgres.Api.Controllers
 
         [HttpPost("settings")]
         [ProducesResponseType(typeof(ApiResponse), (int)HttpStatusCode.OK)]
-        [AllowAnonymous]
         public IActionResult Settings([FromBody] SettingsViewModel model)
         {
             if (!ModelState.IsValid)
@@ -199,9 +203,9 @@ namespace dotnetpostgres.Api.Controllers
         /// <returns></returns>
         private async Task<ApiResponse<UserViewModel>> GetUser()
         {
-            var user = await _accountService.GetUser(GetUserId().Value.ToString());
+            var user = await _accountService.GetUser(GetUserId().ToString());
 
-            //   var settings = _userBusiness.GetSettings(user.Settings);
+            var settings = user.Settings;
 
             return new ApiResponse<UserViewModel>
             {
@@ -215,18 +219,18 @@ namespace dotnetpostgres.Api.Controllers
                     Username = user.UserName,
                     EmailConfirmed = user.EmailConfirmed,
                     Roles = user.Roles,
-                    Claims = user.Claims.Select(c => new Claim()
+                    Claims = user.Claims.Select(c => new Claim
                     {
                         Value = c.Key,
                         Description = c.Value
-                    })
-                    //Settings = new Settings
-                    //{
-                    //    FixedHeader = settings.FixedHeader,
-                    //    OpenTagsView = settings.OpenTagsView,
-                    //    ThemeColor = settings.ThemeColor,
-                    //    PaginationAlign = settings.PaginationAlign
-                    //}
+                    }),
+                    Settings = new Settings
+                    {
+                        FixedHeader = settings.FixedHeader,
+                        OpenTagsView = settings.OpenTagsView,
+                        ThemeColor = settings.ThemeColor,
+                        PaginationAlign = settings.PaginationAlign
+                    }
                 }
             };
         }
@@ -321,21 +325,21 @@ namespace dotnetpostgres.Api.Controllers
                 Type = ResponseType.Fail
             };
 
-            //var userSettings = new UserSettings
-            //{
-            //    OpenTagsView = model.OpenTagsView.Value,
-            //    FixedHeader = model.FixedHeader.Value,
-            //    ThemeColor = model.ThemeColor,
-            //    PaginationAlign = model.PaginationAlign
-            //};
+            var userSettings = new UserSettings
+            {
+                OpenTagsView = model.OpenTagsView.Value,
+                FixedHeader = model.FixedHeader.Value,
+                ThemeColor = model.ThemeColor,
+                PaginationAlign = model.PaginationAlign
+            };
 
-            //var resp = _userBusiness.UpdateSettings(GetUserId().Value, userSettings);
+            var resp = _userService.UpdateSettings(GetUserId(), userSettings);
 
-            //if (resp.Type != ResponseType.Success)
-            //{
-            //    apiResp.ErrorCode = resp.ErrorCode;
-            //    return apiResp;
-            //}
+            if (resp.Type != ResponseType.Success)
+            {
+                apiResp.ErrorCode = resp.ErrorCode;
+                return apiResp;
+            }
 
             apiResp.Type = ResponseType.Success;
             return apiResp;
@@ -348,7 +352,7 @@ namespace dotnetpostgres.Api.Controllers
                 Type = ResponseType.Fail
             };
 
-            var resp = await _accountService.ChangePassword(GetUserId().Value, password);
+            var resp = await _accountService.ChangePassword(GetUserId(), password);
 
             if (resp.Type != ResponseType.Success)
             {

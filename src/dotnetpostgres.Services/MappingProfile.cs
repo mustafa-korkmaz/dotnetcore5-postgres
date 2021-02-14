@@ -16,8 +16,13 @@ namespace dotnetpostgres.Services
             CreateMap<Dto.Customer.Customer, Dal.Entities.Customer>();
             CreateMap<Dal.Entities.Customer, Dto.Customer.Customer>();
 
-            CreateMap<Dal.Entities.Identity.ApplicationUser, Dto.ApplicationUser>();
-            CreateMap<Dto.ApplicationUser, Dal.Entities.Identity.ApplicationUser>();
+            CreateMap<Dal.Entities.Identity.ApplicationUser, Dto.ApplicationUser>()
+                .ForMember(dest => dest.RawSettings,
+                    opt => opt.MapFrom(src => src.Settings));
+
+            CreateMap<Dto.ApplicationUser, Dal.Entities.Identity.ApplicationUser>()
+                .ForMember(dest => dest.Settings,
+                    opt => opt.MapFrom(src => src.RawSettings));
         }
     }
 }

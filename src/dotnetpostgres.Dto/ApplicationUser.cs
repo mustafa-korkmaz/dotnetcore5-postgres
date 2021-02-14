@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Text.Json;
+using dotnetpostgres.Dto.User;
 
 namespace dotnetpostgres.Dto
 {
@@ -20,10 +21,39 @@ namespace dotnetpostgres.Dto
 
         public string PhoneNumber { get; set; }
 
+        public string RawSettings { get; set; }
+
         public DateTime CreatedAt { get; set; }
 
         public IList<string> Roles { get; set; }
 
+        public UserSettings Settings
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(RawSettings))
+                {
+                    return GetDefaultSettings();
+                }
+
+                return JsonSerializer.Deserialize<UserSettings>(RawSettings);
+            }
+        }
+
         public Dictionary<string, string> Claims { get; set; }
+
+        private UserSettings GetDefaultSettings()
+        {
+            // default theme settings
+            return new()
+            {
+                OpenTagsView = true,
+                FixedHeader = false,
+                ThemeColor = "#1890FF",
+                PaginationAlign = "left"
+            };
+        }
     }
+
+
 }

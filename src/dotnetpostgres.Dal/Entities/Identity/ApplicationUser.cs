@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
 
 namespace dotnetpostgres.Dal.Entities.Identity
 {
-    public class ApplicationUser : IdentityUser<Guid>
+    public class ApplicationUser : IdentityUser<Guid>, IEntity<Guid>
     {
         [MaxLength(50)]
         public string NameSurname { get; set; }
@@ -22,6 +21,6 @@ namespace dotnetpostgres.Dal.Entities.Identity
         [MaxLength(250)]
         public string Settings { get; set; }
 
-       // public virtual ICollection<Parameter> Parameters { get; set; }// 1=>n relation
+        // public virtual ICollection<Parameter> Parameters { get; set; }// 1=>n relation
     }
 }
