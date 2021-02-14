@@ -30,11 +30,5 @@ namespace dotnetpostgres.Services.Customer
                 RecordsTotal = resp.RecordsTotal
             };
         }
-
-        [CacheableResult(CacheKey = "MyAwesomeCacheKey")]
-        public int? CacheTest(int newResult)
-        {
-            return newResult;
-        }
     }
 }

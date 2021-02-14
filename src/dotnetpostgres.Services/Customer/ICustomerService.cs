@@ -7,7 +7,5 @@ namespace dotnetpostgres.Services.Customer
     public interface ICustomerService : ICrudService<Dto.Customer.Customer>
     {
         PagedListResponse<Dto.Customer.Customer> Search(FilteredPagedListRequest<SearchCustomerCriteria> request);
-
-        int? CacheTest(int value);
     }
 }

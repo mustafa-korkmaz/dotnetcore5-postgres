@@ -16,6 +16,7 @@ using Newtonsoft.Json.Serialization;
 using dotnetpostgres.Api.Middlewares;
 using dotnetpostgres.Services.Account;
 using dotnetpostgres.Services.Email;
+using dotnetpostgres.Services.Parameter;
 using dotnetpostgres.Services.User;
 using Microsoft.Extensions.Logging;
 
@@ -78,6 +79,7 @@ namespace dotnetpostgres.Api
             services.AddTransient<IAccountService, AccountService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IEmailService, EmailService>();
+            services.AddTransient<IParameterService, ParameterService>();
 
             services.AddAutoMapper(typeof(MappingProfile));
 
