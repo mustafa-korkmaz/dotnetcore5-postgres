@@ -16,7 +16,7 @@ namespace dotnetpostgres.Dto.Parameter
 
         public byte Order { get; set; }
 
-        public bool IsConstant { get; set; }
+        public bool IsSystem { get; set; }
 
         public bool IsDeleted { get; set; }
     }

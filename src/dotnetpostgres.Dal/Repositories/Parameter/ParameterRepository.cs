@@ -20,9 +20,14 @@ namespace dotnetpostgres.Dal.Repositories.Parameter
 
             var query = Entities.Where(p => p.IsDeleted == false);
 
+            if (!request.FilterCriteria.IncludeSystemParameters)
+            {
+                query = query.Where(p => p.IsSystem == false);
+            }
+
             if (!string.IsNullOrEmpty(request.FilterCriteria.Name))
             {
-                var nameLikeText = string.Format("%{0}%", request.FilterCriteria.Name);
+                var nameLikeText = $"%{request.FilterCriteria.Name}%";
                 query = query.Where(p => EF.Functions.ILike(p.Value, nameLikeText));
             }
 

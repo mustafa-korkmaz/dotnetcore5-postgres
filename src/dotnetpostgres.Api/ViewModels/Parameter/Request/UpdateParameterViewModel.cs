@@ -9,6 +9,10 @@ namespace dotnetpostgres.Api.ViewModels.Parameter.Request
         [Display(Name = "PARAMETER_VALUE")]
         public string Value { get; set; }
 
+        [StringLength(250, ErrorMessage = ValidationErrorCode.MaxLength, MinimumLength = AppConstant.MinimumLengthForSearch)]
+        [Display(Name = "PARAMETER_DESCRIPTION")]
+        public string Description { get; set; }
+
         [Required(ErrorMessage = ValidationErrorCode.RequiredField)]
         [Range(0, byte.MaxValue, ErrorMessage = ValidationErrorCode.BetweenRange)]
         [Display(Name = "ORDER")]

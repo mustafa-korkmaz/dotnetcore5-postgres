@@ -23,7 +23,7 @@ namespace dotnetpostgres.Dal.Entities
         public byte Order { get; set; }
 
         [Required]
-        public bool IsConstant { get; set; }
+        public bool IsSystem { get; set; }
 
         [Required]
         public bool IsDeleted { get; set; }

@@ -8,5 +8,8 @@ namespace dotnetpostgres.Api.ViewModels.Parameter.Request
         [Display(Name = "PARAMETER_NAME")]
         [SnakeCaseQuery(nameof(Name))]
         public string Name { get; set; }
+
+        [SnakeCaseQuery(nameof(IncludeSystemParameters))]
+        public bool IncludeSystemParameters { get; set; }
     }
 }

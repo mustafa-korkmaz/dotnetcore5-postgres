@@ -111,7 +111,8 @@ namespace dotnetpostgres.Api.Controllers
             {
                 FilterCriteria = new SearchParameterCriteria
                 {
-                    Name = model.Name
+                    Name = model.Name,
+                    IncludeSystemParameters = model.IncludeSystemParameters
                 },
                 IncludeRecordsTotal = model.IncludeRecordsTotal,
                 Limit = model.Limit,
@@ -125,7 +126,9 @@ namespace dotnetpostgres.Api.Controllers
                 Id = p.Id,
                 TypeId = p.TypeId,
                 Order = p.Order,
-                Value = p.Value
+                Value = p.Value,
+                Description = p.Description,
+                IsSystem = p.IsSystem
             });
 
             apiResp.Data.RecordsTotal = resp.RecordsTotal;
@@ -143,6 +146,7 @@ namespace dotnetpostgres.Api.Controllers
             var parameter = new Parameter
             {
                 Value = model.Value,
+                Description = model.Description,
                 Order = model.Order.Value,
                 TypeId = model.TypeId.Value
             };
@@ -169,6 +173,7 @@ namespace dotnetpostgres.Api.Controllers
             {
                 Id = id,
                 Value = model.Value,
+                Description = model.Description,
                 Order = model.Order.Value,
                 TypeId = model.TypeId.Value
             };
