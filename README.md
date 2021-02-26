@@ -15,7 +15,7 @@ Includes;
 * EF Code first migrations.
 * Identity.UserManager implementation.
 * Overriding Identity models for a better database design.
-* Logging with NLog including Db query executions
+* Logging including postgres Db query executions
 * Unit of work and generic repository pattern implementation.
 * Ready for overridable CRUD operations by using dto objects.
 * AutoMapper usage for mappings.
